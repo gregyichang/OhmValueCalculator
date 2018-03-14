@@ -32,50 +32,67 @@
     top: 220px;
 }
 
-.resistor div.Black{
+
+.resistor div.Black, option.Black{
     background-color: black;
+    color:white;
 }
 
-.resistor div.Brown {
-    background-color:brown;
+.resistor div.Brown, option.Brown {
+    background-color: brown;
 }
 
-.resistor div.Red {
+.resistor div.Red, option.Red {
     background-color: red;
 }
 
-.resistor div.Orange {
-    background-color:orange;
+.resistor div.Orange, option.Orange {
+    background-color: orange;
 }
 
-.resistor div.Yellow {
+.resistor div.Yellow, option.Yellow {
     background-color: yellow;
 }
 
-.resistor div.Green {
+.resistor div.Green, option.Green{
     background-color: green;
 }
 
-.resistor div.Blue {
+.resistor div.Blue, option.Blue{
     background-color: blue;
 }
 
-.resistor div.Violet {
+.resistor div.Violet, option.Violet{
     background-color: violet;
 }
 
-.resistor div.Grey {
+.resistor div.Grey, option.Grey{
     background-color: darkgrey;
 }
 
-.resistor div.White {
+.resistor div.White, option.White{
     background-color: white;
 }
 
-.resistor div.Gold {
+.resistor div.Gold, option.Gold{
     background-color: gold;
 }
 
-.resistor div.Silver {
+.resistor div.Silver, option.Silver{
     background-color: silver;
+}
+
+div.ohm-results-container {
+    font-weight: bold;
+    color: darkblue;
+}
+
+div.ohm-results {
+    font-weight: normal;
+}
+
+div.reset {
+    position:relative;
+    top: 30px;
+    left: 13px;
 }

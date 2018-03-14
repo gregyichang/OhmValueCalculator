@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DataService, IColorCode } from '../service/data.service';
+import { DataService, IColorCode, OhmValue } from '../service/data.service';
 
 @Component({
     providers: [DataService],
@@ -16,7 +16,10 @@ export class HomeComponent implements OnInit {
     public bandBCode: string = "";
     public bandCCode: string = "";
     public bandDCode: string = "";
+    public calcResult: OhmValue;
+    public calcSuccess: Boolean = false;
     constructor(private dataService: DataService) {
+        //this.calcResult = null;
     }
 
     ngOnInit() {
@@ -30,6 +33,23 @@ export class HomeComponent implements OnInit {
     }
 
     calculate() {
-        //this.dataService.cal
+        if (this.bandACode == "" || this.bandBCode == "" || this.bandCCode == "") {
+            this.reset();
+            return;
+        }
+
+        this.dataService.calculateOhmValue(this.bandACode, this.bandBCode, this.bandCCode, this.bandDCode).subscribe(
+            result => {
+                this.calcResult = result.json() as OhmValue;
+                this.calcSuccess = true
+            }
+            , error => {
+                this.reset();
+            });
+    }
+
+    reset() {
+        this.calcResult = {} as OhmValue;
+        this.calcSuccess = false;
     }
 }

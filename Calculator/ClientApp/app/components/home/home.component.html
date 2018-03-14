@@ -8,63 +8,44 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>Band A Color</label>
-                    <select class="form-control" name="bandacolor" [(ngModel)]="bandACode" required>
+                    <select class="form-control" name="bandacolor" [(ngModel)]="bandACode" required (ngModelChange)="calculate()">
                         <option value="">-- choose color --</option>
-                        <option [value]="code.color" *ngFor="let code of colorABCodes">{{code.color}}</option>
+                        <option [value]="code.color" *ngFor="let code of colorABCodes" class="{{code.color}}">{{code.color}}</option>
                     </select>
 
-                    <!--<div *ngIf="bandacolor.invalid && (bandacolor.dirty || bandacolor.touched)"
-                         class="alert alert-danger">
-
-                        <div *ngIf="bandacolor.errors.required">
-                            Band A Color is required.
-                        </div>
-                    </div>-->
                 </div>
                 <div class="form-group">
                     <label>Band B Color</label>
-                    <select class="form-control" name="bandbcolor" [(ngModel)]="bandBCode" required>
+                    <select class="form-control" name="bandbcolor" [(ngModel)]="bandBCode" required (ngModelChange)="calculate()">
                         <option value="">-- choose color --</option>
-                        <option [value]="code.color" *ngFor="let code of colorABCodes">{{code.color}}</option>
+                        <option [value]="code.color" *ngFor="let code of colorABCodes" class="{{code.color}}">{{code.color}}</option>
                     </select>
 
-                    <!--<div *ngIf="bandbcolor.invalid && (bandbcolor.dirty || bandbcolor.touched)"
-                         class="alert alert-danger">
-
-                        <div *ngIf="bandbcolor.errors.required">
-                            Band B Color is required.
-                        </div>
-                    </div>-->
                 </div>
                 <div class="form-group">
                     <label>Band C Color</label>
-                    <select class="form-control" name="bandccolor" [(ngModel)]="bandCCode" required>
+                    <select class="form-control" name="bandccolor" [(ngModel)]="bandCCode" required (ngModelChange)="calculate()">
                         <option value="">-- choose color --</option>
-                        <option [value]="code.color" *ngFor="let code of colorCCodes">{{code.color}}</option>
+                        <option [value]="code.color" *ngFor="let code of colorCCodes" class="{{code.color}}">{{code.color}}</option>
                     </select>
-
-                    <!--<div *ngIf="bandccolor.invalid && (bandccolor.dirty || bandccolor.touched)"
-                         class="alert alert-danger">
-
-                        <div *ngIf="bandccolor.errors.required">
-                            Band C Color is required.
-                        </div>
-                    </div>-->
                 </div>
                 <div class="form-group">
                     <label>Band D Color(+/-20% if left blank)</label>
-                    <select class="form-control" name="banddcolor" [(ngModel)]="bandDCode">
-                        <option value="">-- choose color --</option>
-                        <option [value]="code.color" *ngFor="let code of colorDCodes">{{code.color}}</option>
+                    <select class="form-control" name="banddcolor" [(ngModel)]="bandDCode" (ngModelChange)="calculate()">
+                        <option value=""></option>
+                        <option [value]="code.color" *ngFor="let code of colorDCodes" class="{{code.color}}">{{code.color}}</option>
                     </select>
                 </div>
 
-                <button type="button" class="btn btn-primary" (click)="calculate()">Calculate</button>
+                <div class='ohm-results-container'>
+                    Calculated Resistor Values:
+                    <div class="ohm-results" *ngIf="calcSuccess">from {{calcResult.minValue}}&#8486; to {{calcResult.maxValue}}&#8486;</div>
+                </div>
             </div>
             <div class="col-sm-6">
                 <div class="col-sm-1 resistor">
                     <div class="1"></div>
-                    <div class="band a {{bandACode}}" ></div>
+                    <div class="band a {{bandACode}}"></div>
                     <div class="2"></div>
                     <div class="band b {{bandBCode}}"></div>
                     <div class="3"></div>
@@ -74,6 +55,10 @@
                     <div class="5"></div>
                 </div>
             </div>
+            
+        </div>
+        <div class="row reset">
+            <button type="button" class="btn btn-primary" (click)="reset()">Reset</button>
         </div>
     </div>
 </form>

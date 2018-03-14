@@ -74,8 +74,8 @@ namespace CalculatorService.App
             var ohmValue = new OhmValue();
             var tolerate = GetTolerate(bandDColor);
 
-            ohmValue.minValue = abcValue * (1 - tolerate);
-            ohmValue.maxValue = abcValue * (1 + tolerate);
+            ohmValue.minValue = Math.Round(abcValue * (1 - tolerate));
+            ohmValue.maxValue = Math.Round(abcValue * (1 + tolerate));
 
             return ohmValue;
         }
@@ -90,7 +90,7 @@ namespace CalculatorService.App
 
         private double GetTolerate(string bandDColor)
         {
-            if (!string.IsNullOrEmpty(bandDColor))
+            if (string.IsNullOrEmpty(bandDColor))
             {
                 return default_tolerance;
             }

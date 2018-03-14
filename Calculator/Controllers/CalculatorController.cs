@@ -19,7 +19,7 @@ namespace Calculator.Controllers
             _calculator = caculator;
         }
 
-        [HttpGet()]
+        [HttpGet("[action]")]
         [ProducesResponseType(typeof(IEnumerable<ColorCode>), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -36,7 +36,7 @@ namespace Calculator.Controllers
         /// <param name="bandBColor">The color of the second significant figure band.</param>
         /// <param name="bandCColor">The color of the decimal multiplier band.</param>
         /// <param name="bandDColor">The color of the tolerance value band.</param>
-        [HttpPost("bandAColor, bandBColor, bandCColor, bandDColor")]
+        [HttpPost("CalculateOhmValue")]
         [ProducesResponseType(typeof(OhmValue), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

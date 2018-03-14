@@ -1,7 +1,7 @@
 ﻿import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/Observable/of';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers,  RequestOptions } from '@angular/http';
 
 @Injectable()
 export class DataService {
@@ -14,8 +14,10 @@ export class DataService {
     }
 
     calculateOhmValue(bandAColor: string, bandBColor: string, bandCColor: string, bandDColor: string): Observable<Response> {
-        var param = { 'bankAcolor': bandAColor };
-        return this.http.post(this.baseUrl + 'api/Calculator/CalculateOhmValue', param, {});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        var param = "?bandAColor=" + bandAColor + "&bandBColor=" + bandBColor + "&bandCColor=" + bandCColor + "&bandDColor="+ bandDColor;
+        return this.http.post(this.baseUrl + 'api/Calculator/CalculateOhmValue' + param, {}, options);
     }
 }
 
@@ -30,7 +32,7 @@ export interface IColorCode {
     isTolerance: Boolean
 }
 
-export interface OhmValue {
+export class OhmValue {
     minValue: number;
     maxValue: number;
 }
