@@ -7,7 +7,7 @@ namespace CalculatorService.App
 {
     public interface IOhmValueCalculator
     {
-        IEnumerable<ColorCode> GetColorCode();
+        IList<ColorCode> GetColorCode();
 
         /// <summary>
         /// Calculates the Ohm value of a resistor based on the band colors.

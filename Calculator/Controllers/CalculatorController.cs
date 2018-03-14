@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using CalculatorService.App;
 using CalculatorService.Model;
+using CalculatorService;
 
 namespace Calculator.Controllers
 {
@@ -26,7 +27,9 @@ namespace Calculator.Controllers
         [ProducesResponseType(500)]
         public IActionResult ColorCodes()
         {
-            return Ok(_calculator.GetColorCode());
+            return ProcessRequest(() => {
+                return Ok(_calculator.GetColorCode());
+            });
         }
 
         /// <summary>
@@ -43,7 +46,24 @@ namespace Calculator.Controllers
         [ProducesResponseType(500)]
         public IActionResult CalculateOhmValue(string bandAColor, string bandBColor, string bandCColor, string bandDColor)
         {
-            return Ok(_calculator.CalculateOhmValue(bandAColor, bandBColor, bandCColor, bandDColor));
+            return ProcessRequest(() => {
+                return Ok(_calculator.CalculateOhmValue(bandAColor, bandBColor, bandCColor, bandDColor));
+            });
+        }
+
+        private IActionResult ProcessRequest(Func<IActionResult> func)
+        {
+            try {
+                return func();
+            }
+            catch(InvalidParameterException ex)
+            {
+                return BadRequest(ex);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
         }
     }
 }

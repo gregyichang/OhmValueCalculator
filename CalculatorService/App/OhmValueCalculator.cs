@@ -18,6 +18,9 @@ namespace CalculatorService.App
             var blackColor = new ColorCode { color = "Black", significantDigits = 0, multiplier = 1 };
             _colorCodeDict.Add(blackColor.color, blackColor);
             _colorCodes.Add(blackColor);
+            var brownColor = new ColorCode { color = "Brown", significantDigits = 1, multiplier = 10, tolerance = 0.01 };
+            _colorCodeDict.Add(brownColor.color, brownColor);
+            _colorCodes.Add(brownColor);
             var redColor = new ColorCode { color = "Red", significantDigits = 2, multiplier = 100, tolerance = 0.02 };
             _colorCodeDict.Add(redColor.color, redColor);
             _colorCodes.Add(redColor);
@@ -59,15 +62,15 @@ namespace CalculatorService.App
         /// <param name="bandDColor">The color of the tolerance value band.</param>
         public OhmValue CalculateOhmValue(string bandAColor, string bandBColor, string bandCColor, string bandDColor)
         {
-            if (!_colorCodeDict.ContainsKey(bandAColor)) throw new InvalidOperationException("invalid parameters");
+            if (!_colorCodeDict.ContainsKey(bandAColor)) throw new InvalidParameterException("invalid parameters");
             var colorACode = _colorCodeDict[bandAColor];
-            if (!_colorCodeDict.ContainsKey(bandBColor)) throw new InvalidOperationException("invalid parameters");
+            if (!_colorCodeDict.ContainsKey(bandBColor)) throw new InvalidParameterException("invalid parameters");
             var colorBCode = _colorCodeDict[bandBColor];
-            if (!_colorCodeDict.ContainsKey(bandCColor)) throw new InvalidOperationException("invalid parameters");
+            if (!_colorCodeDict.ContainsKey(bandCColor)) throw new InvalidParameterException("invalid parameters");
             var colorCCode = _colorCodeDict[bandCColor];
-            if (!string.IsNullOrEmpty(bandDColor) && !_colorCodeDict.ContainsKey(bandDColor)) throw new InvalidOperationException("invalid parameters");
+            if (!string.IsNullOrEmpty(bandDColor) && !_colorCodeDict.ContainsKey(bandDColor)) throw new InvalidParameterException("invalid parameters");
 
-            if (!colorACode.isSignificant || !colorBCode.isSignificant || !colorCCode.isMultiplier) throw new InvalidOperationException("invalid parameters");
+            if (!colorACode.isSignificant || !colorBCode.isSignificant || !colorCCode.isMultiplier) throw new InvalidParameterException("invalid parameters");
 
             double abValue = colorACode.significantDigits.Value * 10.0 + colorBCode.significantDigits.Value;
             double abcValue = abValue * colorCCode.multiplier.Value;
@@ -83,7 +86,7 @@ namespace CalculatorService.App
         /// <summary>
         /// return color codes for resistor based on the band colors.
         /// </summary>
-        public IEnumerable<ColorCode> GetColorCode()
+        public IList<ColorCode> GetColorCode()
         {
             return _colorCodes;
         }
@@ -99,7 +102,7 @@ namespace CalculatorService.App
                 return _colorCodeDict[bandDColor].tolerance.Value;
             }else
             {
-                throw new InvalidOperationException("invalid parameters");
+                throw new InvalidParameterException("invalid parameters");
             }
         }
     }
