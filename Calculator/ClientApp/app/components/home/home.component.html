@@ -1,0 +1,79 @@
+<form>
+    <h1>Calculates the Ohm value of a resistor based on the band colors </h1>
+    <p>Select different colors for band A, B, C and D to calculate</p>
+    
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Band A Color</label>
+                    <select class="form-control" name="bandacolor" [(ngModel)]="bandACode" required>
+                        <option value="">-- choose color --</option>
+                        <option [value]="code.color" *ngFor="let code of colorABCodes">{{code.color}}</option>
+                    </select>
+
+                    <!--<div *ngIf="bandacolor.invalid && (bandacolor.dirty || bandacolor.touched)"
+                         class="alert alert-danger">
+
+                        <div *ngIf="bandacolor.errors.required">
+                            Band A Color is required.
+                        </div>
+                    </div>-->
+                </div>
+                <div class="form-group">
+                    <label>Band B Color</label>
+                    <select class="form-control" name="bandbcolor" [(ngModel)]="bandBCode" required>
+                        <option value="">-- choose color --</option>
+                        <option [value]="code.color" *ngFor="let code of colorABCodes">{{code.color}}</option>
+                    </select>
+
+                    <!--<div *ngIf="bandbcolor.invalid && (bandbcolor.dirty || bandbcolor.touched)"
+                         class="alert alert-danger">
+
+                        <div *ngIf="bandbcolor.errors.required">
+                            Band B Color is required.
+                        </div>
+                    </div>-->
+                </div>
+                <div class="form-group">
+                    <label>Band C Color</label>
+                    <select class="form-control" name="bandccolor" [(ngModel)]="bandCCode" required>
+                        <option value="">-- choose color --</option>
+                        <option [value]="code.color" *ngFor="let code of colorCCodes">{{code.color}}</option>
+                    </select>
+
+                    <!--<div *ngIf="bandccolor.invalid && (bandccolor.dirty || bandccolor.touched)"
+                         class="alert alert-danger">
+
+                        <div *ngIf="bandccolor.errors.required">
+                            Band C Color is required.
+                        </div>
+                    </div>-->
+                </div>
+                <div class="form-group">
+                    <label>Band D Color(+/-20% if left blank)</label>
+                    <select class="form-control" name="banddcolor" [(ngModel)]="bandDCode">
+                        <option value="">-- choose color --</option>
+                        <option [value]="code.color" *ngFor="let code of colorDCodes">{{code.color}}</option>
+                    </select>
+                </div>
+
+                <button type="button" class="btn btn-primary" (click)="calculate()">Calculate</button>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-1 resistor">
+                    <div class="1"></div>
+                    <div class="band a {{bandACode}}" ></div>
+                    <div class="2"></div>
+                    <div class="band b {{bandBCode}}"></div>
+                    <div class="3"></div>
+                    <div class="band c {{bandCCode}}"></div>
+                    <div class="4"></div>
+                    <div class="band d {{bandDCode}}"></div>
+                    <div class="5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

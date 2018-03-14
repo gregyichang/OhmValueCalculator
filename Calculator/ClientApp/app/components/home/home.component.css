@@ -1,0 +1,81 @@
+﻿.resistor {
+    border-radius: 20px;
+    background-color:aliceblue;
+    width: 40px;
+    height: 260px;
+    top:20px;
+    border: solid;
+    border-color: darkgray;
+    border-bottom-width:2px;
+}
+
+.resistor div.band {
+    position: relative;
+    height: 5px;
+    width: 38px;
+    left: -16px;
+}
+
+.resistor div.band.a {
+    top: 20px;
+}
+
+.resistor div.band.b {
+    top: 90px;
+}
+
+.resistor div.band.c {
+    top: 160px;
+}
+
+.resistor div.band.d {
+    top: 220px;
+}
+
+.resistor div.Black{
+    background-color: black;
+}
+
+.resistor div.Brown {
+    background-color:brown;
+}
+
+.resistor div.Red {
+    background-color: red;
+}
+
+.resistor div.Orange {
+    background-color:orange;
+}
+
+.resistor div.Yellow {
+    background-color: yellow;
+}
+
+.resistor div.Green {
+    background-color: green;
+}
+
+.resistor div.Blue {
+    background-color: blue;
+}
+
+.resistor div.Violet {
+    background-color: violet;
+}
+
+.resistor div.Grey {
+    background-color: darkgrey;
+}
+
+.resistor div.White {
+    background-color: white;
+}
+
+.resistor div.Gold {
+    background-color: gold;
+}
+
+.resistor div.Silver {
+    background-color: silver;
+}
