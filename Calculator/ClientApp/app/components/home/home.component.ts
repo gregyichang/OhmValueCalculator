@@ -53,6 +53,7 @@ export class HomeComponent implements OnInit {
         this.calcResult = {} as OhmValue;
         this.calcSuccess = false;
     }
+
     resetAll() {
         this.reset();
         this.bandACode = "";
