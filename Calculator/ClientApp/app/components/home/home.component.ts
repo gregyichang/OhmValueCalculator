@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { DataService, IColorCode, OhmValue } from '../service/data.service';
 
 @Component({
@@ -12,13 +12,14 @@ export class HomeComponent implements OnInit {
     public colorABCodes: IColorCode[];
     public colorCCodes: IColorCode[];
     public colorDCodes: IColorCode[];
+
     public bandACode: string = "";
     public bandBCode: string = "";
     public bandCCode: string = "";
     public bandDCode: string = "";
     public calcResult: OhmValue;
     public calcSuccess: Boolean = false;
-    constructor(private dataService: DataService) {
+    constructor(private dataService: DataService, private ref: ChangeDetectorRef) {
         //this.calcResult = null;
     }
 
@@ -51,5 +52,14 @@ export class HomeComponent implements OnInit {
     reset() {
         this.calcResult = {} as OhmValue;
         this.calcSuccess = false;
+    }
+    resetAll() {
+        this.reset();
+        this.bandACode = "";
+        this.bandBCode = "";
+        this.bandCCode = "";
+        this.bandDCode = "";
+
+        this.ref.markForCheck();
     }
 }

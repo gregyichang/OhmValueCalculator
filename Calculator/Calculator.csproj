@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\home\Home.component.spec.ts" />
     <None Remove="ClientApp\app\components\service\data.service.ts" />
   </ItemGroup>
 
@@ -30,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\home\Home.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\service\data.service.ts" />
   </ItemGroup>
 
